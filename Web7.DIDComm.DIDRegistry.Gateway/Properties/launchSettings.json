@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Web7.DIDComm.DIDRegistry.Gateway": {
+      "commandName": "Project"
+    }
+  }
+}

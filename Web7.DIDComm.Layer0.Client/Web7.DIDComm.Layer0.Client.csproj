@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Web7.DIDComm.Layer0.Agent">
+      <HintPath>..\Web7.DIDComm.Layer0.Agent\bin\Debug\netcoreapp3.1\Web7.DIDComm.Layer0.Agent.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

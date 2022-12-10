@@ -1,0 +1,23 @@
+// Trusted Digial Web Project
+// Hyperonomy Digital Identity Lab
+// Parallelspace Corporation
+// (c) Copyright 2021 Parallelspace Corporation. All Rights Reserved
+
+//////////////////////////////////////////////////////////////////////////////
+
+struct SendMessageRequest
+{
+	string messageText;
+}
+
+protocol SendMessage
+{
+	Type: HTTP;
+	Request: SendMessageRequest;
+	Response: void;
+}
+
+server Layer0AgentServer
+{
+	protocol SendMessage;
+}
