@@ -16,7 +16,9 @@ namespace Web7.DIDComm.Layer0.Agent
 
         public override void SendMessageHandler(SendMessageRequest request)
         {
-            Console.WriteLine("messageText: '" + request.messageText + "'");
+            string messageText = request.messageText;
+
+            Console.WriteLine("messageText: '" + messageText + "'");
         }
     }
 }

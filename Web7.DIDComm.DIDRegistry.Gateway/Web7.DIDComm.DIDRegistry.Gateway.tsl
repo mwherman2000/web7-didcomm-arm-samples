@@ -5,19 +5,84 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-struct SendMessageRequest
+include "../Web7.DIDComm.TSLLib/DIDDocument.tsl";
+
+struct CreateRequest
 {
-	string messageText;
+	string did;
+	string publicKey64;
 }
 
-protocol SendMessage
+struct CreateResponse
+{
+	bool success;
+	optional DIDDocument diddoc;
+}
+
+struct ReadRequest
+{
+	string did;
+}
+
+struct ReadResponse
+{
+	bool success;
+	optional DIDDocument diddoc;
+}
+
+struct UpdateRequest
+{
+	string did;
+	DIDDocument diddoc;
+}
+
+struct UpdateResponse
+{
+	bool success;
+}
+
+struct DeactivateRequest
+{
+	string did;
+}
+
+struct DeactivateResponse
+{
+	bool success;
+}
+
+protocol Create
 {
 	Type: HTTP;
-	Request: SendMessageRequest;
-	Response: void;
+	Request: CreateRequest;
+	Response: CreateResponse;
+}
+
+protocol Read
+{
+	Type: HTTP;
+	Request: ReadRequest;
+	Response: ReadResponse;
+}
+
+protocol Update
+{
+	Type: HTTP;
+	Request: UpdateRequest;
+	Response: UpdateResponse;
+}
+
+protocol Deactivate
+{
+	Type: HTTP;
+	Request: DeactivateRequest;
+	Response: DeactivateResponse;
 }
 
 server DIDRegistryGatewayServer
 {
-	protocol SendMessage;
+	protocol Create;
+	protocol Read;
+	protocol Update;
+	protocol Deactivate;
 }

@@ -5,8 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Web7.DIDComm.DIDRegistry.Gateway;
 
-// requestMessage.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
-
 namespace Web7.DIDComm.DIDRegistry.Client
 {
     class Program
@@ -23,6 +21,8 @@ namespace Web7.DIDComm.DIDRegistry.Client
 
             string url = new UriBuilder(scheme, host, port, path).ToString();
             Console.WriteLine("Url: '" + url + "'");
+
+            DIDDocument ddoc = new DIDDocument();
 
             string messageText = DateTime.UtcNow.ToString("u");
 

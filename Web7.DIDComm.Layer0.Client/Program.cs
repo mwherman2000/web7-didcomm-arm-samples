@@ -26,29 +26,33 @@ namespace Web7.DIDComm.Layer0.Client
 
             string messageText = DateTime.UtcNow.ToString("u");
 
+            SendMessageRequest messageRequest = new SendMessageRequest(messageText);
+            string jsonMessageRequest = messageRequest.ToString();
+            Console.WriteLine("jsonMessageRequest: '" + jsonMessageRequest + "'");
+
+            string jsonSendMessageResponse = "";
+
             using (var httpClient = new HttpClient())
             {
                 using (var requestMessage = new HttpRequestMessage(new HttpMethod("POST"), url))
                 {
-                    SendMessageRequest message = new SendMessageRequest(messageText);
-                    string jsonRequest = message.ToString();
-                    Console.WriteLine("jsonRequest: '" + jsonRequest + "'");
-
                     requestMessage.Headers.TryAddWithoutValidation("Accept", "application/json");
-                    requestMessage.Content = new StringContent(jsonRequest);
+                    requestMessage.Content = new StringContent(jsonMessageRequest);
                     var task = httpClient.SendAsync(requestMessage);
                     task.Wait();
                     var result = task.Result;
 
-                    string jsonResponse = result.Content.ReadAsStringAsync().Result;
-                    Console.WriteLine("jsonResponse: '" + jsonResponse + "'");
-                    Console.WriteLine("StatusCode: " + result.StatusCode.ToString() 
-                        + " (" + ((int)result.StatusCode).ToString() + ")");
-                }
+                    Console.WriteLine("StatusCode: " + result.StatusCode.ToString()
+                                                     + " (" + ((int)result.StatusCode).ToString() + ")");
 
-                Console.WriteLine("Press Enter to exit Client...");
-                Console.ReadLine();
+                    jsonSendMessageResponse = result.Content.ReadAsStringAsync().Result;
+                }
             }
+
+            Console.WriteLine("jsonSendMessageResponse: '" + jsonSendMessageResponse + "'");
+
+            Console.WriteLine("Press Enter to exit Client...");
+            Console.ReadLine();
         }
     }
 }

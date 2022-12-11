@@ -20,12 +20,12 @@ struct JSONKeyMap
 }
 
 
-https://www.w3.org/TR/did-core/#verification-method-properties
+// https://www.w3.org/TR/did-core/#verification-method-properties
 struct VerificationMethodMap
 {
 	string id;
 	string controller;
-	string type;
+	string types;
 	optional string publicKeyMultibase;
 	optional JSONKeyMap publicKeyJwk;
 }
@@ -34,7 +34,7 @@ struct VerificationMethodMap
 struct ServiceMap
 {
 	string id;
-	List<string> type;
+	List<string> types;
 	List<string> serviceEndpoint;
 }
 
